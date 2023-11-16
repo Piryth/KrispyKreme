@@ -5,7 +5,8 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     let {email, password} = body;
-
+    password = await bcrypt.hash(password, 10);
+    console.log(password);
     // =================================================
     const
         url: string = process.env['DB_URL']!;
