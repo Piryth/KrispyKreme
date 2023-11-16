@@ -20,7 +20,7 @@ function Page() {
 
     const [email, setEmail] =useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [error, setError] = useState<boolean>(null);
+    const [error, setError] = useState<boolean>(false);
     const [hydrated, setHydrated] = React.useState(false);
 
     const validateEmail = () => {

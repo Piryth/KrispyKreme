@@ -6,19 +6,16 @@ export async function POST(req: Request) {
 
     let {email, password} = body;
     password = await bcrypt.hash(password, 10);
-    console.log(password);
+
     // =================================================
-    const
-        url: string = process.env['DB_URL']!;
-    const client = new MongoClient(url);
+    const client = new MongoClient(process.env['DB_URL']!);
     await client.connect();
     console.log('Connected successfully to server');
     const db = client.db("Assignment_Project");
     const collection = db.collection('login'); // collection name
 
     const findResult = await collection.find({"email":
-        email}).toArray();
-    console.log('Found documents =>', findResult);
+        email, "password": password}).toArray();
 
     let valid = false
     console.log("result length " + findResult.length);
